@@ -8,41 +8,78 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="styles/general.css">
   <style>
-    /* ===== Highlights scroller (optional) ===== */
-    .highlights { --gap: 1rem; --speed: 45s; }
-    .highlights .scroller { overflow: hidden; position: relative; mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent); -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent); width: 100%; }
-    .highlights .track { display: flex; gap: var(--gap); width: max-content; will-change: transform; animation: scroll var(--speed) linear infinite; }
-    .highlight-card { width: 280px; border-radius: 14px; position: relative; overflow: hidden; flex-shrink: 0; cursor: pointer; background: #fff; box-shadow: 0 4px 10px rgba(0,0,0,0.15); text-decoration: none; color: inherit; }
-    .highlight-card img, .highlight-card video { width: 100%; height: 180px; object-fit: cover; display: block; }
-    .highlight-card .label { position: absolute; top: 8px; left: 8px; z-index: 30; font-size: 0.8rem; }
-    .highlight-card .overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.6); color: #fff; opacity: 0; transition: opacity .3s; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 1rem; }
-    .highlight-card:hover .overlay { opacity: 1; }
-    .overlay h6 { margin-bottom: .5rem; }
-    .overlay p { font-size: .85rem; margin: 0; }
-    .highlights .scroller:hover .track { animation-play-state: paused; }
-    @media (min-width: 992px) { .highlight-card { width: 340px; } .highlight-card img, .highlight-card video { height: 220px; } }
-    @keyframes scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-    @media (prefers-reduced-motion: reduce) { .highlights .track { animation: none; } .highlights .scroller { overflow-x: auto; } }
-    .no-animate .track { animation: none !important; } .no-animate .scroller { overflow-x: auto; padding-bottom: .25rem; }
+    html {
+      scroll-behavior: smooth;
+    }
+    /* ===== Decorative pink-line between sections ===== */
+    .section-separator {
+      width: 100%;
+      height: 4px;
+      background-color: #e863ac;
+      margin: 0 auto 4rem auto;
+    }
 
     /* ===== Hero Section ===== */
-    .hero { position: relative; height: 80vh; display: flex; align-items: center; justify-content: center; text-align: center; color: #fff; background: #000; }
-    .hero .hero-bg { position: absolute; inset: 0; background: url('images/machine1.png') center/cover no-repeat; filter: brightness(0.5); z-index: 0; }
-    .hero .hero-content { position: relative; z-index: 1; max-width: 800px; padding: 0 1rem; }
+    .hero {
+      position: relative;
+      height: 80vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: #fff;
+      background: #000;
+    }
+    .hero .hero-bg {
+      position: absolute;
+      inset: 0;
+      background: url('images/machine1.png') center/cover no-repeat;
+      filter: brightness(0.5);
+      z-index: 0;
+    }
+    .hero .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 800px;
+      padding: 0 1rem;
+    }
     .hero h1 { font-size: 2.75rem; margin-bottom: 1rem; }
     .hero p { font-size: 1.15rem; margin-bottom: 1.5rem; }
 
     /* ===== Sections ===== */
-    .container-section { width: min(90%, 1200px); margin: 0 auto; padding: 4rem 0; }
+    section { scroll-margin-top: 80px; }
+    .container-section {
+      width: min(90%, 1200px);
+      margin: 0 auto;
+      padding: 4rem 0;
+    }
     .section-title { text-align: center; margin-bottom: 2rem; }
-    .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr)); gap: 2rem; }
-    .card-basic { background: #f9f9f9; border-radius: 8px; padding: 2rem; text-align: center; transition: transform .3s ease, box-shadow .3s ease; }
-    .card-basic:hover { transform: translateY(-5px); box-shadow: 0 8px 24px rgba(0,0,0,0.1); }
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
+      gap: 2rem;
+    }
+    .card-basic {
+      background: #f9f9f9;
+      border-radius: 8px;
+      padding: 2rem;
+      text-align: center;
+      transition: transform .3s ease, box-shadow .3s ease;
+    }
+    .card-basic:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+    }
     .card-basic h3 { margin-bottom: 0.75rem; font-size: 1.25rem; }
     .card-basic p { font-size: 0.95rem; color: #555; }
 
     /* ===== Footer ===== */
-    .site-footer { background: #222; color: #ccc; padding: 3rem 0; text-align: center; }
+    .site-footer {
+      background: #222;
+      color: #ccc;
+      padding: 3rem 0;
+      text-align: center;
+    }
     .site-footer a { color: #ccc; }
     .site-footer a:hover { color: #fff; }
     .site-footer p { margin-bottom: 1rem; font-size: 0.9rem; }
@@ -53,7 +90,7 @@
   <!-- Navbar -->
   <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: #e863ac;">
     <div class="container d-flex align-items-center">
-      <a class="navbar-brand d-flex align-items-center" href="#">
+      <a class="navbar-brand d-flex align-items-center" href="#home">
         <img src="images/logoCP.jpg" alt="Logo" style="height: 60px;">
         <h1 class="ms-2" style="font-size:1.5rem;color:#fff;">CP Laser Hair Removal</h1>
       </a>
@@ -62,7 +99,7 @@
       </button>
       <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
         <ul class="navbar-nav">
-          <li class="nav-item"><a class="nav-link active" href="#">ΚΕΝΤΡΙΚΗ</a></li>
+          <li class="nav-item"><a class="nav-link active" href="#home">ΚΕΝΤΡΙΚΗ</a></li>
           <li class="nav-item"><a class="nav-link" href="#about">ΠΟΙΟΙ ΕΙΜΑΣΤΕ</a></li>
           <li class="nav-item"><a class="nav-link" href="#machine">ΤΟΜΗ / ΣΥΣΚΕΥΗ</a></li>
           <li class="nav-item"><a class="nav-link" href="#book">ΚΡΑΤΗΣΗ</a></li>
@@ -75,82 +112,112 @@
     </div>
   </nav>
 
-  <!-- Hero -->
-  <section class="hero">
+  <!-- Hero (Home) -->
+  <section class="hero" id="home">
     <div class="hero-bg"></div>
     <div class="hero-content">
       <h1>Laser Hair Removal με Candela Alexandrite</h1>
       <p>Ασφαλής • Γρήγορη • Μακροχρόνια αποτελέσματα με ιατρικού επιπέδου εξοπλισμό.</p>
-      <a class="btn btn-lg btn-light mt-3" href="#book">Book your Appointment</a>
+      <a class="btn btn-lg btn-light mt-3" href="#book">Κάντε Κράτηση</a>
     </div>
   </section>
 
-  <!-- How It Works -->
+  <div class="section-separator"></div>
+
+  <!-- Machine / Treatment Section -->
   <section class="container-section" id="machine">
-    <div class="section-title">
-      <h2>Πώς Λειτουργεί</h2>
-      <p>Η συσκευή Candela Alexandrite 755nm στοχεύει τη μελανίνη στις θύλες της τρίχας για αποτελεσματική και μακροχρόνια μείωση της τριχοφυΐας.</p>
-    </div>
-    <div class="text-center">
-      <!-- MACHINE IMAGE PLACEHOLDER -->
-      <img src="images/image.png" alt="Candela Alexandrite machine" style="max-width:100%; border-radius:8px;"/>
+    <div class="section-title"><h2>ΤΟΜΗ / ΣΥΣΚΕΥΗ</h2></div>
+    <p>
+      Το Laser Αλεξανδρίτη της Candela αποτελεί την εξέλιξη στην αποτρίχωση με laser και προσφέρει μόνιμη λύση στην ανεπιθύμητη τριχοφυΐα. Το καθιστά ακόμη πιο αποτελεσματικό με την ταχύτητα και την ακρίβεια που προσφέρει, είναι το ταχύτερο και αποδοτικότερο σύστημα στην αγορά, ιδανικό για κάθε περιοχή του σώματος. Λειτουργεί με δέσμη φωτός στα 755 nm, στοχεύοντας τη μελανίνη των τριχών και καταστρέφοντας τον θύλακα της τρίχας χωρίς να επηρεάζει το περιβάλλον δέρμα. Η ανανεωμένη έκδοση του συστήματος το καθιστά ακόμη πιο προηγμένο, ενώ η τεχνολογία δυναμικής ψύξης (Dynamic Cooling Device – DCD) εξασφαλίζει προστασία της επιδερμίδας και άνεση κατά τη θεραπεία.
+    </p>
+    <div class="text-center mt-4">
+      <img src="images/image1.png" alt="Candela Alexandrite machine" style="max-width:100%; border-radius:8px; margin-bottom:1rem;"/>
+      <img src="images/image2.png" alt="Κατά τη χρήση της συσκευής" style="max-width:100%; border-radius:8px; margin-bottom:1rem;"/>
+      <img src="images/image3.png" alt="Θεραπεία με Candela Alexandrite" style="max-width:100%; border-radius:8px; margin-bottom:1rem;"/>
     </div>
   </section>
+
+  <div class="section-separator"></div>
+
+  <!-- Pricing Catalogue Section -->
+  <section class="container-section" id="pricing">
+    <div class="section-title"><h2>Τιμοκατάλογος</h2></div>
+    <div class="text-center mt-4">
+      <img src="images/pricelist.png" alt="Τιμοκατάλογος" style="max-width:100%; border-radius:8px;"/>
+    </div>
+  </section>
+
+  <div class="section-separator"></div>
 
   <!-- Benefits Section -->
   <section class="container-section">
-    <div class="section-title">
-      <h2>Γιατί να μας επιλέξετε</h2>
-    </div>
+    <div class="section-title"><h2>Γιατί να μας επιλέξετε</h2></div>
     <div class="cards">
-      <div class="card-basic">
-        <h3>Γρήγορες & Άνετες Θεραπείες</h3>
-        <p>Σύντομες συνεδρίες με ελάχιστη ενόχληση χάρη στην προηγμένη τεχνολογία μας.</p>
-      </div>
-      <div class="card-basic">
-        <h3>Ιατρικού Επιπέδου Εξοπλισμός</h3>
-        <p>Χρησιμοποιούμε την κορυφαία συσκευή Candela Alexandrite για την βέλτιστη ασφάλεια και αποτελέσματα.</p>
-      </div>
-      <div class="card-basic">
-        <h3>Διαρκή Αποτελέσματα</h3>
-        <p>Με σωστές συνεδρίες η μείωση της τριχοφυΐας είναι σημαντική και μακροχρόνια.</p>
-      </div>
+      <div class="card-basic"><h3>Γρήγορες & Άνετες Θεραπείες</h3><p>Σύντομες συνεδρίες με ελάχιστη ενόχληση χάρη στην προηγμένη τεχνολογία μας.</p></div>
+      <div class="card-basic"><h3>Ιατρικού Επιπέδου Εξοπλισμός</h3><p>Χρησιμοποιούμε την κορυφαία συσκευή Candela Alexandrite για τη βέλτιστη ασφάλεια και αποτελέσματα.</p></div>
+      <div class="card-basic"><h3>Διαρκή Αποτελέσματα</h3><p>Με σωστές συνεδρίες η μείωση της τριχοφυΐας είναι σημαντική και μακροχρόνια.</p></div>
     </div>
   </section>
+
+  <div class="section-separator"></div>
 
   <!-- About Us Section -->
   <section class="container-section" id="about">
-    <div class="section-title">
-      <h2>Ποιοι Είμαστε</h2>
-    </div>
-    <p>Καλώς ήρθατε στον CP Hair Removal. Είμαστε αφιερωμένοι στην παροχή ασφαλών, αποτελεσματικών θεραπειών αποτρίχωσης με λέιζερ, χρησιμοποιώντας την πιο σύγχρονη τεχνολογία και εξατομικευμένη φροντίδα.</p>
+    <div class="section-title"><h2>Ποιοι Είμαστε</h2></div>
+    <p>Καλώς ήρθατε στον CP Laser Hair Removal. Είμαστε αφιερωμένοι στην παροχή ασφαλών, αποτελεσματικών θεραπειών αποτρίχωσης με λέιζερ, χρησιμοποιώντας την πιο σύγχρονη τεχνολογία και εξατομικευμένη φροντίδα.</p>
   </section>
+
+  <div class="section-separator"></div>
 
   <!-- Booking Section -->
   <section class="container-section" id="book">
-    <div class="section-title">
-      <h2>Κράτηση Ραντεβού</h2>
-    </div>
+    <div class="section-title"><h2>Κράτηση Ραντεβού</h2></div>
     <div class="text-center">
-      <a class="btn btn-primary btn-lg" style="background-color:#e863ac;" href="#">Κάνετε Κράτηση Τώρα</a>
+      <p>Οι κρατήσεις γίνονται <strong>κατόπιν τηλεφωνικής επικοινωνίας στο 99656189</strong> ή <strong>με DM στο <a href="https://www.instagram.com/laser.hair.removal_/" target="_blank">Instagram @laser.hair.removal_</a></strong>.</p>
+      <a class="btn btn-primary btn-lg" style="background-color:#e863ac;" href="tel:+35799656189">Καλέστε Τώρα</a>
+      <a class="btn btn-outline-primary btn-lg ms-2" href="https://www.instagram.com/laser.hair.removal_/" target="_blank">DM στο Instagram</a>
     </div>
   </section>
 
-  <!-- Contact Section -->
-  <section class="container-section" id="contact">
-    <div class="section-title">
-      <h2>Επικοινωνία</h2>
+  <div class="section-separator"></div>
+
+  <!-- Packages Section -->
+  <section class="container-section" id="packages">
+    <div class="section-title"><h2>Πακέτα Θεραπειών</h2></div>
+    <div class="cards">
+      <div class="card-basic"><h3>Μασχάλες</h3><p>€20 (δωρεάν μουστάκι)</p></div>
+      <div class="card-basic"><h3>Μπικίνι + Μασχάλες</h3><p>€35</p></div>
+      <div class="card-basic"><h3>Χέρια + Μασχάλες</h3><p>€60</p></div>
+      <div class="card-basic"><h3>Πόδια + Χέρια</h3><p>€120</p></div>
+      <div class="card-basic"><h3>Πόδια + Μπικίνι + Μασχάλες</h3><p>€100</p></div>
+      <div class="card-basic"><h3>Πόδια + Μπικίνι</h3><p>€95</p></div>
+      <div class="card-basic"><h3>Ζυγωματικά + Σβέρκο + Λαιμό</h3><p>€35</p></div>
     </div>
-    <p>Διεύθυνση: [Οδός & Πόλη]</p>
-    <p>Τηλέφωνο: +30-123-4567890</p>
-    <p>Email: info@clinic.com</p>
   </section>
+
+  <div class="section-separator"></div>
+
+  <!-- Find Us / Contact Section -->
+  <section class="container-section" id="contact">
+    <div class="section-title"><h2>Επικοινωνία</h2></div>
+    <p>Διεύθυνση: Griva Digeni 15, Dali</p>
+    <p>Τηλέφωνο: 99656189</p>
+    <div class="text-center mt-4">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3021.1234567890!2d33.XXX!3d35.XXX!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14...!2sGriva%20Digeni%2015%2C%20Dali%2C%20Cyprus!5e0!3m2!1sen!2sus!4v0000000000000" width="100%" height="400" style="border:0; border-radius:8px;" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+  </section>
+
+  <div class="section-separator"></div>
 
   <!-- Footer -->
-  <footer class="site-footer" style="background-color: #e863ac;">
-    <div class="container">
-      <p>&copy; 2025 CP Laser Hair Removal. All rights reserved.</p>
-      <p><a href="#" class="text-warning text-decoration-none">Contact us</a></p>
+  <footer class="site-footer" style="background-color:#e863ac;">
+    <div class="container text-center">
+      <p class="mb-1">Διεύθυνση: Griva Digeni 15, Dali</p>
+      <p class="mb-1">&copy; 2025 CP Laser Hair Removal. All rights reserved.</p>
+      <div class="d-flex justify-content-center gap-3 mb-2">
+        <a href="https://www.instagram.com/laser.hair.removal_/" target="_blank"><img src="images/image.png" alt="Instagram" style="height:30px;"></a>
+      </div>
+      <p class="mb-0"><a href="mailto:info@clinic.com" class="text-warning text-decoration-none">Contact us</a></p>
       <div style="font-size:13px; margin-top:5px;">
         Made and designed by <a href="https://koumasweb.com" target="_blank" class="text-warning">KoumasWeb</a> ©
       </div>
